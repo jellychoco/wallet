@@ -1,65 +1,66 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import {useEffect,useState} from 'react'
+import MainLayout from '../layout/MainLayout'
+import { Avatar, BottomNavigation, BottomNavigationAction, Snackbar } from '@material-ui/core'
 
-export default function Home() {
+import { useRouter } from 'next/router'
+import { makeStyles } from '@material-ui/core/styles'
+import {Home,CompareArrows,AccountBalanceWallet,WebAsset,Explore, DataUsage} from '@material-ui/icons'
+import Data from '../components/Data'
+import Asset from '../components/Asset'
+const useStyles = makeStyles(theme => ({
+  root: {
+    height: '100vh',
+    position: 'relative',
+    backgroundColor:"#FFFFFF",
+  }
+}))
+
+const user = {
+  id:'wanghanyang',
+  name:"jaemin",
+  profileImage:"https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9",
+}
+
+const Index = () => {
+  const classes = useStyles()
+  const router = useRouter()
+  const [tab, setTab] = useState(router.query.tab !== undefined ? Number(router.query.tab) : 0)
+  
+  const getContent = (step) => {
+    // if (user.me === undefined || user.me === null) {
+    //   router.push('/login')
+    //   return <Loading />
+    // }
+
+    switch (step) {
+      case 0:
+        return (<Data user={user}/>);
+      case 1:
+        return (<Asset/>);
+      default:
+        return null;
+    }
+  }
+
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+    <div className={classes.root} >
+      {getContent(tab)}
+       <BottomNavigation
+        showLabels
+        value={tab}
+        onChange={(event, newValue) => {
+          setTab(newValue);
+        }}
+      >
+        <BottomNavigationAction label="DATA" icon={<DataUsage />} />
+        <BottomNavigationAction label="ASSET" icon={<WebAsset />} />
+        <BottomNavigationAction label="EXPOLORE" icon={<Explore />} />
+      </BottomNavigation>
     </div>
   )
 }
+
+Index.Layout = MainLayout
+
+export default Index
