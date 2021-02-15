@@ -4,7 +4,9 @@ import Modal from "@material-ui/core/Modal"
 import Backdrop from "@material-ui/core/Backdrop"
 import Fade from "@material-ui/core/Fade"
 import CopyAbleBox from "../Utils/CopyAbleBox"
-
+import {coinList} from '../../commonSetting'
+import QRCode from 'qrcode.react'
+import { Typography } from "@material-ui/core"
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
@@ -12,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   paper: {
-    // margin:"0px 10px 50px 10px",
     minWidth:"90%",
     minHeight:"40%",
     outline: "none",
@@ -26,15 +27,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReceiveModal({ open, handleClose, content }) {
   const classes = useStyles()
-  let type = "Receive"
-  let address = "902390dksaodadasdfasjkofasjokso"
-  let coinTypes = ["ETH", "BIT", "EOS"]
 
   const selectBoxGenerator = (list) => {
     if (!list || !list.length) return <option></option>
 
     return list.map((v) => {
-      return <option value={v}>{v}</option>
+      return <option key={v} value={v}>{v}</option>
     })
   }
 
@@ -55,14 +53,14 @@ export default function ReceiveModal({ open, handleClose, content }) {
         <Fade in={open}>
           <div className={classes.paper}>
             <div style={{display:"flex",justifyContent:"space-between"}}>
-            <h3 id='transition-modal-title'>Receive</h3>
+            <Typography variant="h5">Receive</Typography>
             <select
               onChange={(v) => {
                 console.log(v.target.value)
               }}
               style={{ outline: "none",minWidth:"50%",maxHeight:"30px",margin:"auto 0",backgroundColor:"#FAFAFA",border:"none",borderRadius:"5px",padding:"5px" }}
             >
-              {selectBoxGenerator(coinTypes)}
+              {selectBoxGenerator(coinList)}
             </select>
 
             </div>

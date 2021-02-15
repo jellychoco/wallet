@@ -8,6 +8,9 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: '#FFFFFF'
+    },
+    textPrimary:{
+      main:"gray"
     }
   },
   overrides: {

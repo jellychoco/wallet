@@ -4,6 +4,10 @@ import FileCopyIcon from "@material-ui/icons/FileCopy";
 import { Alert } from "@material-ui/lab";
 import { Snackbar } from "@material-ui/core";
 import QRCode from "qrcode.react";
+/**
+ * 
+ * @param {*} content 복사하고자하는 문자열 
+ */
 function CopyAbleBox({ content }) {
   const [openAlert, setOpenAlert] = useState(false);
   const [severity, setSeverity] = useState("error");

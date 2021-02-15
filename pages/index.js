@@ -53,12 +53,9 @@ const Index = () => {
         return (<Data user={user} showAlert={showAlert} />);
       case 1:
         return (<Asset showAlert={showAlert} />);
-      default:
-        return null;
     }
   }
 
- 
   return (
     <div className={classes.root} >
       {getContent(tab)}
