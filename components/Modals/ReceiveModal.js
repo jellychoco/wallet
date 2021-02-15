@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import Modal from "@material-ui/core/Modal"
 import Backdrop from "@material-ui/core/Backdrop"
 import Fade from "@material-ui/core/Fade"
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import CopyAbleBox from "../Utils/CopyAbleBox"
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -47,14 +47,14 @@ export default function ReceiveModal({ open, handleClose, content }) {
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        BackdropComponent={Backdrop}
+        // BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <div style={{display:"flex"}}>
+            <div style={{display:"flex",justifyContent:"space-between"}}>
             <h3 id='transition-modal-title'>Receive</h3>
             <select
               onChange={(v) => {
@@ -67,7 +67,8 @@ export default function ReceiveModal({ open, handleClose, content }) {
 
             </div>
             <div>
-              지갑주소
+              <h4>지갑주소</h4>
+              <CopyAbleBox content={"dksafkpaskp"}/>
              </div>
           </div>
         </Fade>
