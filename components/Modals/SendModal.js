@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import Modal from "@material-ui/core/Modal"
 import Backdrop from "@material-ui/core/Backdrop"
 import Fade from "@material-ui/core/Fade"
@@ -7,6 +7,7 @@ import CopyAbleBox from "../Utils/CopyAbleBox"
 import { feeRate } from "../../commonSetting"
 import QRCode from "qrcode.react"
 import PropTypes from "prop-types"
+import { useRouter } from "next/router";
 import {
     withStyles,
     makeStyles,
@@ -20,6 +21,8 @@ import {
     InputAdornment,
     IconButton,
     Slider,
+    Button,
+    Slide
 } from "@material-ui/core"
 import Autocomplete, { createFilterOptions } from "@material-ui/lab/Autocomplete"
 import { CropFree, RecentActors } from "@material-ui/icons"
@@ -60,12 +63,12 @@ const IOSSlider = withStyles({
         padding: "15px 0",
     },
     thumb: {
-        height: 28,
-        width: 28,
+        height: 20,
+        width: 20,
         backgroundColor: "#fff",
         boxShadow: iOSBoxShadow,
-        marginTop: -14,
-        marginLeft: -14,
+        marginTop: -10,
+        marginLeft: -10,
         "&:focus, &:hover, &$active": {
             boxShadow:
                 "0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)",
@@ -103,10 +106,13 @@ const IOSSlider = withStyles({
         backgroundColor: "currentColor",
     },
 })(Slider)
-function TabContent() {
-    const classes = useStyles()
-    const [value, setValue] = useState(30)
 
+
+function TabContent({ coinType, handleClose, amount }) {
+    const router = useRouter()
+    const classes = useStyles()
+    const [value, setValue] = useState(0)
+    const refer = useRef(0)
     const handleChange = (event, newValue) => {
         setValue(newValue)
     }
@@ -120,13 +126,14 @@ function TabContent() {
                     options={top100Films.map((option) => option.title)}
                     renderInput={(params) => (
                         <TextField
+                            component={'span'}
                             {...params}
                             label='받는사람'
                             placeholder='주소'
                             margin='normal'
                             InputProps={{
                                 ...params.InputProps,
-                                shrink: true,
+                                // shrink: true,
                                 type: "search",
                                 endAdornment: (
                                     <InputAdornment>
@@ -147,11 +154,37 @@ function TabContent() {
             <div style={{ width: "100%" }}>
                 <Typography variant='subtitle2'>Fee</Typography>
                 <IOSSlider
-                    getAriaValueText={(text) => {
-                        console.log(text * feeRate)
-                    }}
+                    min={0}
+                    value={value}
+                    onChange={handleChange}
                     defaultValue={0}
                 />
+                <Typography variant="caption">{value}{coinType}</Typography>
+            </div>
+            <div style={{ margin: "10px 5px 10px 5px" }}>
+                <Button
+                    style={{ borderRadius: "10px", minHeight: "50px" }}
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    onClick={() => {
+                        router.push({
+                            pathname: "/sendComplete",
+                            query: {
+                                sendAmount: `${amount}  ${coinType}`
+                            },
+                        })
+                    }}
+                >
+                    확인
+        </Button>
+                <Button
+                    style={{ borderRadius: "10px", minHeight: "50px", color: "gray" }}
+                    fullWidth
+                    onClick={handleClose}
+                >
+                    취소
+        </Button>
             </div>
         </div>
     )
@@ -170,7 +203,7 @@ function TabPanel(props) {
         >
             {value === index && (
                 <Box p={1}>
-                    <Typography>{children}</Typography>
+                    <Typography component={"span"}>{children}</Typography>
                 </Box>
             )}
         </div>
@@ -197,7 +230,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         // margin:"0px 10px 50px 10px",
-        width:"100%",
+        width: "100%",
         minHeight: "40%",
         outline: "none",
         maxWidth: "800px",
@@ -240,18 +273,15 @@ export default function SendModal({
     return (
         <div>
             <Modal
-                // aria-labelledby="transition-modal-title"
-                // aria-describedby="transition-modal-description"
                 className={classes.modal}
                 open={open}
                 onClose={handleClose}
                 closeAfterTransition
-                // BackdropComponent={Backdrop}
                 BackdropProps={{
                     timeout: 500,
                 }}
             >
-                <Fade in={open}>
+                <Slide direction="up" in={open}>
                     <div className={classes.paper}>
                         <div>
                             <Typography variant='h5'>
@@ -282,7 +312,7 @@ export default function SendModal({
                                 onChangeIndex={handleChangeIndex}
                             >
                                 <TabPanel value={value} index={0} dir={theme.direction}>
-                                    <TabContent />
+                                    <TabContent coinType={coinType} handleClose={handleClose} amount={amount} />
                                 </TabPanel>
                                 <TabPanel value={value} index={1} dir={theme.direction}>
                                     <TabContent />
@@ -293,7 +323,7 @@ export default function SendModal({
                             </SwipeableViews>
                         </div>
                     </div>
-                </Fade>
+                </Slide>
             </Modal>
         </div>
     )

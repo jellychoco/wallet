@@ -5,9 +5,10 @@ import { Alert } from '@material-ui/lab'
 
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
-import { Home, CompareArrows, AccountBalanceWallet, WebAsset, Explore, DataUsage } from '@material-ui/icons'
+import { Home, CompareArrows, AccountBalanceWallet, WebAsset, Explore, DataUsage, ImportContacts } from '@material-ui/icons'
 import Data from '../components/Data'
 import Asset from '../components/Asset'
+import Contact from '../components/Contact'
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
@@ -53,6 +54,8 @@ const Index = () => {
         return (<Data user={user} showAlert={showAlert} />);
       case 1:
         return (<Asset showAlert={showAlert} />);
+      case 2:
+        return (<Contact showAlert={showAlert} />);
     }
   }
 
@@ -68,6 +71,7 @@ const Index = () => {
       >
         <BottomNavigationAction label="DATA" icon={<DataUsage />} />
         <BottomNavigationAction label="ASSET" icon={<WebAsset />} />
+        <BottomNavigationAction label="CONTACT" icon={<ImportContacts />} />
         <BottomNavigationAction label="EXPOLORE" icon={<Explore />} />
       </BottomNavigation>
       {/* <Snackbar

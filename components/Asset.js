@@ -2,15 +2,8 @@ import React, { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { useRouter } from "next/router";
 import {
-  Paper,
   Grid,
-  Card,
-  Avatar,
-  Button,
   Typography,
-  Container,
-  Divider,
-  LinearProgress,
   IconButton,
   makeStyles,
   AppBar,
@@ -38,7 +31,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+         {children}
         </Box>
       )}
     </div>
@@ -151,7 +144,6 @@ function Asset() {
         </div>
       </Grid>
       <ReceiveModal open={open} handleClose={handleClose} />
-      {/* <PopupModal open={open} closeModal={closeModal}/> */}
     </Grid>
   );
 }

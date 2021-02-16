@@ -70,10 +70,9 @@ function Data({ user }) {
     <Grid className={classes.root} container>
       {/* // */}
       <Grid style={{ display: "flex" }} item xs={12}>
-        <Grid style={{ display: "flex", justifyContent: "center" }} item xs={2}>
-          <Avatar style={{ textAlign: "center" }} src={user.profileImage} />{" "}
+        <Grid style={{ display: "flex", justifyContent: "center",paddingTop:"5%" }} item xs={4}>
+          <Avatar style={{ textAlign: "center",height:"75px",width:"75px" }} src={user.profileImage} />
         </Grid>
-
         <Grid
           style={{
             display: "flex",
@@ -81,26 +80,24 @@ function Data({ user }) {
             alignItems: "center",
           }}
           item
-          xs={10}
+          xs={8}
         >
           <RemoveCircleOutline style={{ margin: "0px 10px 0px 10px" }} />
           <MoreHoriz style={{ margin: "0px 10px 0px 10px" }} />
         </Grid>
       </Grid>
 
-      {/* // */}
       <Grid className={classes.GridCover} item xs={12}>
         <Typography style={{ color: "lightgray" }}>Morning</Typography>
-        <Button style={{ fontSize: "1.75rem", padding: 0, display: "block" }}>
-          {id}
+        <Button style={{ fontSize: "1.25rem", padding: 0, display: "block" }}>
+           {id}
           <ArrowForwardIos style={{ marginLeft: "10px" }} />
         </Button>
         <Typography variant='subtitle2' style={{ color: "gray" }}>
           ONT ID
         </Typography>
       </Grid>
-      {/* // */}
-      <Grid className={classes.GridCover} item xs={12}>
+        <Grid className={classes.GridCover} item xs={12}>
         <Grid style={{ display: "flex" }}>
           <Add
             fontSize='large'
@@ -126,7 +123,7 @@ function Data({ user }) {
 
       {/* // */}
       <Grid className={classes.GridCover} item xs={12}>
-        <Typography style={{ paddingBottom: "10px" }} variant='h5'>
+        <Typography style={{ paddingBottom: "10px" }} variant='h6'>
           ONT Score
         </Typography>
         <div style={{ position: "relative", display: "flex" }}>
@@ -147,14 +144,14 @@ function Data({ user }) {
           >
             768
           </Typography>
-          <IconButton style={{ padding: 0 }}>
-            <ArrowForward color='primary' fontSize='large' />
+          <IconButton style={{ padding: 0,backgroundColor:"white" }}>
+            <ArrowForward fontSize='large' style={{color:"black"}} />
           </IconButton>
         </div>
       </Grid>
       {/* // */}
       <Grid className={classes.GridCover} item xs={12}>
-        <Typography style={{ paddingBottom: "10px" }} variant='h5'>
+        <Typography style={{ paddingBottom: "10px" }} variant='h6'>
           Claims
         </Typography>
         <Grid
@@ -174,7 +171,7 @@ function Data({ user }) {
                 <Typography
                   style={{ display: "inline-block" }}
                   color='primary'
-                  variant='h4'
+                  variant='h6'
                 >
                   3
                 </Typography>
@@ -196,7 +193,7 @@ function Data({ user }) {
                 <Typography
                   style={{ display: "inline-block" }}
                   color='primary'
-                  variant='h4'
+                  variant='h6'
                 >
                   10
                 </Typography>
@@ -218,7 +215,7 @@ function Data({ user }) {
                 <Typography
                   style={{ display: "inline-block" }}
                   color='primary'
-                  variant='h4'
+                  variant='h6'
                 >
                   1
                 </Typography>
@@ -240,7 +237,7 @@ function Data({ user }) {
                 <Typography
                   style={{ display: "inline-block" }}
                   color='primary'
-                  variant='h4'
+                  variant='h6'
                 >
                   2
                 </Typography>

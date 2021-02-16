@@ -72,7 +72,7 @@ function Transmit() {
       </AppBar>
       <Grid container style={{ padding: "0 5% 5% 5%" }}>
         <Grid item xs={12}>
-          <Typography variant="h4">전송</Typography>
+          <Typography variant="h5">전송</Typography>
         </Grid>
 
         <Grid item xs={12} className={classes.commonGrid}>
@@ -113,9 +113,6 @@ function Transmit() {
             endAdornment: <InputAdornment>{selectedCoin}</InputAdornment>,
           }}
         />
-        {/* <Typography variant="subtitle2" color="textPrimary">
-          120.62 {selectedCoin} Available
-        </Typography> */}
       </Grid>
       <Grid item xs={12} className={classes.commonGrid}>
         <Button
