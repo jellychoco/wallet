@@ -284,7 +284,7 @@ export default function SendModal({
                 <Slide direction="up" in={open}>
                     <div className={classes.paper}>
                         <div>
-                            <Typography variant='h5'>
+                            <Typography variant='h6'>
                                 Send {amount} {coinType}
                             </Typography>
                         </div>

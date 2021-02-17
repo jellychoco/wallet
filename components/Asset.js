@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState ,useEffect} from "react";
 import SwipeableViews from "react-swipeable-views";
 import { useRouter } from "next/router";
 import {
@@ -53,20 +53,27 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
-    overflow: "auto",
+    // overflow: "auto",
     padding: "20px",
     paddingBottom: "50px",
+    height:"100vh"
   },
   GridCover: {
+    // position:"sticky",
     padding: "20px",
+    display:"flex",
+    justifyContent:"center",
+    flexDirection:"column"
   },
   tapRoot: {
     backgroundColor: "white",
+  
   },
 }));
 
 function Asset() {
   const router = useRouter();
+  const getHight = useRef()
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = useState(0);
@@ -83,7 +90,7 @@ function Asset() {
 
   return (
     <Grid className={classes.root} container>
-      <Grid className={classes.GridCover} item xs={12}>
+      <Grid className={classes.GridCover} ref={getHight} item xs={12}>
         <Typography style={{ textAlign: "center" }} variant="h4">
           $180.62820
         </Typography>
@@ -130,12 +137,13 @@ function Asset() {
             </Tabs>
           </AppBar>
           <SwipeableViews
+            style={{height:"500px"}}
             axis={theme.direction === "rtl" ? "x-reverse" : "x"}
             index={value}
             onChangeIndex={handleChangeIndex}
           >
             <TabPanel value={value} index={0} dir={theme.direction}>
-              <CoinsTap />
+              <CoinsTap/>
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
               <CollectiblesTap />

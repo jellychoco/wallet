@@ -36,6 +36,7 @@ export default function ReceiveModal({ open, handleClose, content }) {
       return <option key={v} value={v}>{v}</option>
     })
   }
+  
 
   return (
     <div>

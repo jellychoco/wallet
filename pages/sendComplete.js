@@ -11,7 +11,7 @@ function sendComplete() {
         <div style={{position:"relative",backgroundColor:"white",height:'100vh',display:"flex",flexDirection:"column",justifyContent:"space-evenly",alignItems:"center"}}>
           
             <div style={{textAlign:"center",width:"50%",marginTop:"5%"}}>
-                <Check style={{fontSize:"50px",backgroundColor:"lightgray",borderRadius:"50%",margin:"5%"}}/>
+                <Check style={{fontSize:"50px",backgroundColor:"#F2F2F2",borderRadius:"50%",margin:"5%"}}/>
                 <Typography style={{margin:"5%"}} variant="h5">전송완료</Typography>
                 <Typography style={{margin:"5%"}} variant="subtitle2">{router.query.sendAmount}</Typography>
             </div>

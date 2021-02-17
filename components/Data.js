@@ -64,6 +64,18 @@ function Data({ user }) {
     {
       name: "yunseok",
       profileImage: profileImage,
+    },{
+      name: "yunseok",
+      profileImage: "",
+    },{
+      name: "yunseok",
+      profileImage: "",
+    },{
+      name: "yunseok",
+      profileImage: "",
+    },{
+      name: "yunseok",
+      profileImage: "",
     },
   ]
   return (
@@ -104,14 +116,21 @@ function Data({ user }) {
             style={{ border: "1px solid #F2F2F2", borderRadius: "50%" }}
             color='primary'
           />{" "}
-          {avatarlist.map((v,key) => {
-            return (
-              <Avatar
-              key={key}
-                style={{ margin: "0px 10px 0px 10px" }}
-                src={v.profileImage}
-              />
-            )
+          {avatarlist.map((v,index) => {
+            if(index < 3){
+
+              return (
+                <Avatar
+                key={index}
+                  style={{ margin: "0px 10px 0px 10px" }}
+                  src={v.profileImage}
+                />
+              )
+            } else if(index === 4) {
+              return (
+                   <MoreHoriz key={index} style={{ margin:"auto 0 auto 0" }} />
+              )
+            }
           })}
         </Grid>
         <Grid style={{ marginTop: "10px" }}>
