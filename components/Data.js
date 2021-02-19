@@ -143,7 +143,7 @@ function Data({ user }) {
       {/* // */}
       <Grid className={classes.GridCover} item xs={12}>
         <Typography style={{ paddingBottom: "10px" }} variant='h6'>
-          ONT Score
+          Score
         </Typography>
         <div style={{ position: "relative", display: "flex" }}>
           <BorderLinearProgress variant='determinate' value={50} />

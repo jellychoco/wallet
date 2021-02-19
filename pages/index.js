@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const user = {
-  id: 'wanghanyang',
+  id: 'JELLYCHOCO',
   name: "jaemin",
   profileImage: "https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9",
 }
@@ -44,10 +44,6 @@ const Index = () => {
   }
 
   const getContent = (step) => {
-    // if (user.me === undefined || user.me === null) {
-    //   router.push('/login')
-    //   return <Loading />
-    // }
 
     switch (step) {
       case 0:
@@ -69,21 +65,10 @@ const Index = () => {
           setTab(newValue);
         }}
       >
-        <BottomNavigationAction label="DATA" icon={<DataUsage />} />
+        <BottomNavigationAction label="HOME" icon={<DataUsage />} />
         <BottomNavigationAction label="ASSET" icon={<WebAsset />} />
         <BottomNavigationAction label="CONTACT" icon={<ImportContacts />} />
-        <BottomNavigationAction label="EXPOLORE" icon={<Explore />} />
       </BottomNavigation>
-      {/* <Snackbar
-        open={openAlert}
-        autoHideDuration={2000}
-        onClose={handleAlertClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      >
-        <Alert onClose={handleAlertClose} severity={severity}>
-          {message}
-        </Alert>
-      </Snackbar> */}
     </div>
   )
 }
