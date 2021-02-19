@@ -33,21 +33,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function AddContactModal({open, handleClose, content}) {
+export default function AddContactModal({open, handleClose, addFriend}) {
   const classes = useStyles()
 
   const transmitData = (e) => {
     e.preventDefault()
     const {target} = e
 
-    const information = {
+    // const information = {
+    //   id: target[0].value,
+    //   name: target[1].value,
+    //   phone: target[2].value,
+    //   address: target[3].value,
+    // }
+
+    addFriend({
       id: target[0].value,
       name: target[1].value,
       phone: target[2].value,
       address: target[3].value,
-    }
+    })
 
-    console.log(information)
   }
 
   return (

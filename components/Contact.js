@@ -72,11 +72,59 @@ const dummyData = [
 
 function Contact() {
   const [open, setOpen] = useState(false)
+  const [data,setData] = useState([
+    {
+      id: 1,
+      profileImage: "",
+      name: "aemin",
+      phone: "01079008653",
+      address: "asdkpkdp",
+      email: "ma88082@gmail.com",
+    },
+    {
+      id: 2,
+      profileImage: "",
+      name: "baemin",
+      phone: "01079008653",
+      address: "asdkpkdp",
+      email: "ma88082@gmail.com",
+    },
+    {
+      id: 3,
+      profileImage: "",
+      name: "cmin",
+      phone: "01079008653",
+      address: "asdkpkdp",
+      email: "ma88082@gmail.com",
+    },
+    {
+      id: 4,
+      profileImage: "",
+      name: "김재민",
+      phone: "01079008653",
+      address: "asdkpkdp",
+      email: "ma88082@gmail.com",
+    },
+    {
+      id: 5,
+      profileImage: "",
+      name: "나재민",
+      phone: "01079008653",
+      address: "asdkpkdp",
+      email: "ma88082@gmail.com",
+    }
+  ])
   const handleClose = () => setOpen(false)
   const [selectedFriend, setSelectedFriend] = useState({
     open: false,
     data: null,
   })
+
+  const addFriend = (friendData)=>{
+    setData(data.concat(friendData))
+    
+  }
+  console.log(data)
 
   const handlePersonalContactModal = () => {
     setSelectedFriend({...selectedFriend, open: false})
@@ -139,6 +187,7 @@ function Contact() {
     })
   }
 
+
   return (
     <div
       style={{
@@ -169,14 +218,15 @@ function Contact() {
       </div>
       <div style={{marginBottom: "15%"}}>
         {/* main */}
-        {contactListGenerator(dummyData)}
+        {contactListGenerator(data)}
       </div>
 
-      <AddContactModal open={open} handleClose={handleClose} />
+      <AddContactModal  addFriend={addFriend} open={open} handleClose={handleClose} />
       <PersonalContactInfoModal
         open={selectedFriend.open}
         handleClose={handlePersonalContactModal}
         data={selectedFriend.data}
+        
       />
     </div>
   )
