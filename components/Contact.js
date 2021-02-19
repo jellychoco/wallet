@@ -124,7 +124,6 @@ function Contact() {
     setData(data.concat(friendData))
     
   }
-  console.log(data)
 
   const handlePersonalContactModal = () => {
     setSelectedFriend({...selectedFriend, open: false})
